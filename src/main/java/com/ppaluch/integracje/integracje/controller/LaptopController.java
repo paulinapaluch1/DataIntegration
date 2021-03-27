@@ -6,7 +6,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
-import org.springframework.validation.Errors;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
@@ -18,7 +17,7 @@ public class LaptopController {
     @Autowired
     private LaptopService laptopService;
 
-    public static List<Laptop> txtList;
+    public static List<Laptop> laptopList;
 
     @GetMapping("/start")
     public String getStartPage(Model theModel) {
@@ -28,20 +27,35 @@ public class LaptopController {
     @GetMapping("/laptops")
     public String getLaptops(Model theModel) {
         List<Laptop> list =  laptopService.getAllLaptops();
-        txtList = list;
+        laptopList = list;
         theModel.addAttribute("laptops", list);
         return "laptops";
     }
 
     @GetMapping("/laptops/save")
     public String saveAllToTxt() {
-        laptopService.saveLaptops(txtList);
+        laptopService.saveLaptops(laptopList);
         return "index";
     }
 
+    @GetMapping("/laptops/xml")
+    public String getLaptopsFromXml(Model theModel) {
+        List<Laptop> list =  laptopService.getAllLaptopsFromXml();
+        laptopList = list;
+        theModel.addAttribute("laptops", list);
+        return "laptops";
+    }
+
+    @GetMapping("/laptops/saveXml")
+    public String saveAllToXml() {
+        laptopService.saveLaptops(laptopList);
+        return "index";
+    }
+
+
     @RequestMapping(value = "/laptops/edit", method = RequestMethod.GET)
     public String showFormForEdit(@RequestParam("index") Integer index, Model theModel)   {
-        theModel.addAttribute("laptop", txtList.get(index - 1));
+        theModel.addAttribute("laptop", laptopList.get(index - 1));
         return "edit";
     }
 
@@ -51,8 +65,8 @@ public class LaptopController {
         if (bindingResult.hasErrors()) {
             return "edit";
         } else {
-            txtList.set(laptop.getIndex() - 1, laptop);
-            model.addAttribute("laptops", txtList);
+            laptopList.set(laptop.getIndex() - 1, laptop);
+            model.addAttribute("laptops", laptopList);
             return "laptops";
         }
     }

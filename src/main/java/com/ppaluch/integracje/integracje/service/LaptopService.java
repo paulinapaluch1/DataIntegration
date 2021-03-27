@@ -19,4 +19,8 @@ public class LaptopService {
     public void saveLaptops(List<Laptop> laptops){
         csvReader.saveLaptops(laptops);
     }
+
+    public List<Laptop> getAllLaptopsFromXml() {
+        return csvReader.readLaptops();
+    }
 }
