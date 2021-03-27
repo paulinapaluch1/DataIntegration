@@ -2,6 +2,7 @@ package com.ppaluch.integracje.integracje.service;
 
 import com.ppaluch.integracje.integracje.csv.CSVReader;
 import com.ppaluch.integracje.integracje.dto.Laptop;
+import com.ppaluch.integracje.integracje.xml.XmlHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 
 import java.util.List;
@@ -12,6 +13,8 @@ public class LaptopService {
     @Autowired
     CSVReader csvReader;
 
+    XmlHelper xmlHelper;
+
     public List<Laptop> getAllLaptops() {
         return csvReader.readLaptops();
     }
@@ -21,6 +24,6 @@ public class LaptopService {
     }
 
     public List<Laptop> getAllLaptopsFromXml() {
-        return csvReader.readLaptops();
+        return xmlHelper.readLaptops();
     }
 }

@@ -2,11 +2,13 @@ package com.ppaluch.integracje.integracje.dto;
 
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 @Data
 @XmlRootElement( name = "graphic_card" )
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType( propOrder = { "name", "memory"} )
+
 public class GraphicCard {
 
     @XmlElement( name = "name" )

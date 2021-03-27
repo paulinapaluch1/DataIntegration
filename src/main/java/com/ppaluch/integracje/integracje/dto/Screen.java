@@ -2,12 +2,13 @@ package com.ppaluch.integracje.integracje.dto;
 
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
+import javax.xml.bind.annotation.*;
 
 @Data
 @XmlRootElement( name = "screen" )
+@XmlAccessorType(XmlAccessType.FIELD)
+@XmlType( propOrder = { "size", "resolution", "type"} )
+
 public class Screen {
 
     @XmlAttribute( name = "touch", required = false )

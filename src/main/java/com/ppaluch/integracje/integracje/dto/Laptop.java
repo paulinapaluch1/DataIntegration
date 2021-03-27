@@ -21,7 +21,7 @@ public class Laptop {
     @Pattern(regexp = "^[a-ząęółśżźćń]+$", message="Wprowadz poprawny typ powierzchni np. matowa")
     private String screenSurfaceType;
 
-    @Pattern(regexp = "^(?:tak|nie)$", message="Wprowadź tak lub nie")
+    @Pattern(regexp = "^(?:tak|nie|yes|no)$", message="Wprowadź tak lub nie")
     private String isScreenTouch;
     @Pattern(regexp = "^[A-z0-9À-ž\\s]+$", message= "Wprowadź poprawną nazwe procesora")
     private String processorName;

@@ -3,17 +3,18 @@ package com.ppaluch.integracje.integracje.dto;
 
 import lombok.Data;
 
-import javax.xml.bind.annotation.XmlAttribute;
-import javax.xml.bind.annotation.XmlElement;
-import javax.xml.bind.annotation.XmlRootElement;
-import javax.xml.bind.annotation.XmlType;
+import javax.xml.bind.annotation.*;
 
 @Data
-@XmlType( propOrder = { "manufacturer", "screen", "processor", "disc" , "graphic_card", "os", "disc_reader"} )
+@XmlType( propOrder = { "ram", "operatingSystem", "discReader","screen","graphicCard","disc","processor","manufacturer"} )
 @XmlRootElement( name = "laptop" )
+@XmlAccessorType(XmlAccessType.FIELD)
 public class LaptopXml {
 
-    @XmlAttribute( name = "manufacturer", required = false )
+    @XmlAttribute( name = "id")
+    private String id;
+
+    @XmlElement( name = "manufacturer" )
     private String manufacturer;
 
     @XmlElement( name = "ram" )
@@ -24,5 +25,17 @@ public class LaptopXml {
 
     @XmlElement( name = "disc_reader" )
     private String discReader;
+
+    @XmlElement( name = "screen" )
+    private Screen screen;
+
+    @XmlElement( name = "processor" )
+    private Processor processor;
+
+    @XmlElement( name = "disc" )
+    private Disc disc;
+
+    @XmlElement( name = "graphic_card" )
+    private GraphicCard graphicCard;
 
 }
