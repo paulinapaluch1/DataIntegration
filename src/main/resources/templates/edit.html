@@ -1,0 +1,184 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home page</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-light bg-light">
+    <form class="container-fluid justify-content-start">
+        <a th:href="@{/api/laptops}">
+            <button class="btn btn-outline-success me-2" type="button">Wczytaj dane z pliku TXT</button>
+        </a>
+        <a th:href="@{/api/laptops/save}">
+        <button class="btn btn-outline-secondary" type="button">Zapisz dane do pliku TXT</button>
+        </a>
+    </form>
+</nav>
+
+    <form action="#" th:action="@{/api/laptops/saveEdited}"
+          th:object="${laptop}" method="POST">
+        <div class="row">
+
+            <input type="hidden" th:field="*{index}" />
+            <div class="mb-3 col">
+                Producer name: <input type="text" th:field="*{producerName}"
+                                 class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('producerName')}" style="color:red;"
+                        th:errors="*{producerName}"></span>
+            </div>
+
+            <div class="mb-3 col">
+               Screen diagonal: <input type="text" th:field="*{screenDiagonal}"
+                                    class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('screenDiagonal')}" style="color:red;"
+                        th:errors="*{screenDiagonal}"></span>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col">
+                Screen size: <input type="text" th:field="*{screenSize}"
+                                    th:value="${screenSize}" class="form-control col-10">
+
+
+                <span
+                        th:if="${#fields.hasErrors('screenSize')}" style="color:red;"
+                        th:errors="*{screenSize}"></span>
+            </div>
+            <div class="mb-3 col">
+                Screen surface type: <input type="text" th:field="*{screenSurfaceType}"
+                              class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('screenSurfaceType')}" style="color:red;"
+                        th:errors="*{screenSurfaceType}"></span>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col">
+                Screen touch: <input type="text" th:field="*{isScreenTouch}"
+                                    th:value="${isScreenTouch}" class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('isScreenTouch')}" style="color:red;"
+                        th:errors="*{isScreenTouch}"></span>
+            </div>
+            <div class="mb-3 col">
+               Processor name: <input type="text" th:field="*{processorName}"
+                              class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('processorName')}" style="color:red;"
+                        th:errors="*{processorName}"></span>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col">
+               Physical cores number: <input type="text" th:field="*{physicalCoresNumber}"
+                                     th:value="${physicalCoresNumber}" class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('physicalCoresNumber')}" style="color:red;"
+                        th:errors="*{physicalCoresNumber}"></span>
+            </div>
+            <div class="mb-3 col">
+                Clock speed: <input type="text" th:field="*{clockSpeed}"
+                                       class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('clockSpeed')}" style="color:red;"
+                        th:errors="*{clockSpeed}"></span>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col">
+                RAM: <input type="text" th:field="*{RAM}"
+                                              th:value="${RAM}" class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('RAM')}" style="color:red;"
+                        th:errors="*{RAM}"></span>
+            </div>
+            <div class="mb-3 col">
+                Disc capacity: <input type="text" th:field="*{diskCapacity}"
+                                       class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('diskCapacity')}" style="color:red;"
+                        th:errors="*{diskCapacity}"></span>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col">
+               Disk type: <input type="text" th:field="*{diskType}"
+                            th:value="${diskType}" class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('diskType')}" style="color:red;"
+                        th:errors="*{diskType}"></span>
+            </div>
+            <div class="mb-3 col">
+                Graphics: <input type="text" th:field="*{graphics}"
+                                      class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('graphics')}" style="color:red;"
+                        th:errors="*{graphics}"></span>
+            </div>
+
+        </div>
+
+        <div class="row">
+            <div class="mb-3 col">
+                Memory GPU: <input type="text" th:field="*{memoryGPU}"
+                                  th:value="${memoryGPU}" class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('memoryGPU')}" style="color:red;"
+                        th:errors="*{memoryGPU}"></span>
+            </div>
+            <div class="mb-3 col">
+                Operating system: <input type="text" th:field="*{operatingSystem}"
+                                 class="form-control col-10">
+                <span
+                        th:if="${#fields.hasErrors('operatingSystem')}" style="color:red;"
+                        th:errors="*{operatingSystem}"></span>
+            </div>
+
+        </div>
+
+        <div class="row col-5">
+            <div class="mb-3 col">
+                Physical Drive Type: <input type="text" th:field="*{physicalDriveType}"
+                                   th:value="${physicalDriveType}" class="form-control">
+                <span
+                        th:if="${#fields.hasErrors('physicalDriveType')}" style="color:red;"
+                        th:errors="*{physicalDriveType}"></span>
+            </div>
+
+        </div>
+
+        <div class="nav justify-content-end">
+
+            <button type="submit" class="btn mt-4 btn-info col-2 mr-2  ">Save</button>
+
+            <a th:href="@{/api/laptops}" class="btn mt-4 col-2 btn-danger ">Cancel</a>
+        </div>
+
+    </form>
+
+
+
+
+
+
+</div>
+</body>
+
+</html>
+

@@ -1,0 +1,69 @@
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>Home page</title>
+    <meta charset="UTF-8"/>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
+
+</head>
+<body>
+<div class="container">
+<nav class="navbar navbar-light bg-light">
+    <form class="container-fluid justify-content-start">
+        <a th:href="@{/api/laptops}">
+            <button class="btn btn-outline-success me-2" type="button">Wczytaj dane z pliku TXT</button>
+        </a>
+        <a th:href="@{/api/laptops/save}">
+        <button class="btn btn-outline-secondary" type="button">Zapisz dane do pliku TXT</button>
+        </a>
+    </form>
+</nav>
+
+<table class="table table-sm table-bordered border-primary">
+    <tr>
+        <th>Lp.</th>
+        <th>Producer name</th>
+        <th>Screen diagonal</th>
+        <th>Screen size</th>
+        <th>Screen Surface Type</th>
+        <th>Screen touch</th>
+        <th>Processor Name</th>
+        <th>Physical Cores number</th>
+        <th>Clock speed</th>
+        <th>RAM</th>
+        <th>Disk capacity</th>
+        <th>Disk type</th>
+        <th>Graphics</th>
+        <th>memory GPU</th>
+        <th>Operating system</th>
+        <th>Physical Drive Type</th>
+        <th></th>
+    </tr>
+    <tr th:each="laptop : ${laptops}">
+        <td th:text="${laptop.index}"></td>
+        <td th:text="${laptop.producerName}"></td>
+        <td th:text="${laptop.screenDiagonal}"></td>
+        <td th:text="${laptop.screenSize}"></td>
+        <td th:text="${laptop.screenSurfaceType}"></td>
+        <td th:text="${laptop.isScreenTouch}"></td>
+        <td th:text="${laptop.processorName}"></td>
+        <td th:text="${laptop.physicalCoresNumber}"></td>
+        <td th:text="${laptop.clockSpeed}"></td>
+        <td th:text="${laptop.RAM}"></td>
+        <td th:text="${laptop.diskCapacity}"></td>
+        <td th:text="${laptop.diskType}"></td>
+        <td th:text="${laptop.graphics}"></td>
+        <td th:text="${laptop.memoryGPU}"></td>
+        <td th:text="${laptop.operatingSystem}"></td>
+        <td th:text="${laptop.physicalDriveType}"></td>
+        <th>
+            <a th:href="@{/api/laptops/edit(index=${laptop.index})}"
+                    class="btn btn-link">Edit</a>
+        </th>
+    </tr>
+    <div>
+    </div>
+</body>
+
+</html>
+
