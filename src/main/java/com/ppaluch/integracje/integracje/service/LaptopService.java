@@ -12,7 +12,7 @@ public class LaptopService {
 
     @Autowired
     CSVReader csvReader;
-
+    @Autowired
     XmlHelper xmlHelper;
 
     public List<Laptop> getAllLaptops() {

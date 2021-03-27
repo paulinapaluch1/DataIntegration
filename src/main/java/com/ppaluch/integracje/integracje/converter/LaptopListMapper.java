@@ -24,7 +24,7 @@ public class LaptopListMapper {
             laptop.setProcessorName(laptopXml.getProcessor().getName());
             laptop.setPhysicalCoresNumber(laptopXml.getProcessor().getPhysicalCores());
             laptop.setClockSpeed(laptopXml.getProcessor().getClockSpeed());
-            laptop.setRAM(laptop.getRAM());
+            laptop.setRAM(laptopXml.getRam());
             laptop.setDiskCapacity(laptopXml.getDisc().getStorage());
             laptop.setDiskType(laptopXml.getDisc().getType());
             laptop.setGraphics(laptopXml.getGraphicCard().getName());
