@@ -7,6 +7,7 @@ import com.ppaluch.integracje.integracje.dto.Laptops;
 
 import javax.xml.bind.JAXBContext;
 import javax.xml.bind.JAXBException;
+import javax.xml.bind.Marshaller;
 import javax.xml.bind.Unmarshaller;
 import java.io.File;
 import java.util.List;
@@ -27,5 +28,21 @@ public class XmlHelper {
     }
 
 
+    public void saveLaptops(List<Laptop> laptopList) {
+        try {
+            JAXBContext jaxbContext = JAXBContext.newInstance(Laptops.class);
+            Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
+            jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
+
+            File XMLfile = new File("katalog.xml");
+
+            jaxbMarshaller.marshal(LaptopListMapper.from(laptopList), XMLfile);
+
+        } catch (JAXBException e) {
+            e.printStackTrace();
+        }
+
+
+    }
 }

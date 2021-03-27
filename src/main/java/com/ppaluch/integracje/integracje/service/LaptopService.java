@@ -26,4 +26,8 @@ public class LaptopService {
     public List<Laptop> getAllLaptopsFromXml() {
         return xmlHelper.readLaptops();
     }
+
+    public void saveLaptopsToXml(List<Laptop> laptopList) {
+       xmlHelper.saveLaptops(laptopList);
+    }
 }

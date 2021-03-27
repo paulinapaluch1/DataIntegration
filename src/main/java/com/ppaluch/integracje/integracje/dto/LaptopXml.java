@@ -12,7 +12,7 @@ import javax.xml.bind.annotation.*;
 public class LaptopXml {
 
     @XmlAttribute( name = "id")
-    private String id;
+    private Integer id;
 
     @XmlElement( name = "manufacturer" )
     private String manufacturer;

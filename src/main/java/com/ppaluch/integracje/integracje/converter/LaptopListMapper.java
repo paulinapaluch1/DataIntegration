@@ -1,10 +1,9 @@
 package com.ppaluch.integracje.integracje.converter;
 
-import com.ppaluch.integracje.integracje.dto.Laptop;
-import com.ppaluch.integracje.integracje.dto.LaptopXml;
-import com.ppaluch.integracje.integracje.dto.Laptops;
+import com.ppaluch.integracje.integracje.dto.*;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 public class LaptopListMapper {
@@ -12,10 +11,9 @@ public class LaptopListMapper {
 
     public static List<Laptop> from(Laptops laptops){
         List<Laptop> list = new ArrayList<>();
-        int i = 1;
         for(LaptopXml laptopXml : laptops.getLaptopList()){
             Laptop laptop = new Laptop();
-            laptop.setIndex(i);
+            laptop.setIndex(laptopXml.getId());
             laptop.setProducerName(laptopXml.getManufacturer());
             laptop.setScreenDiagonal(laptopXml.getScreen().getSize());
             laptop.setScreenSize(laptopXml.getScreen().getResolution());
@@ -32,15 +30,66 @@ public class LaptopListMapper {
             laptop.setOperatingSystem(laptopXml.getOperatingSystem());
             laptop.setPhysicalDriveType(laptopXml.getDiscReader());
             list.add(laptop);
-            i++;
         }
             return list;
     }
 
 
+    public static Laptops from(List<Laptop> laptopList) {
+        Laptops laptops = new Laptops();
+        laptops.setModDate(new Date().toString());
+        List<LaptopXml> list = new ArrayList<>();
 
+        for(Laptop laptop : laptopList){
+            LaptopXml laptopXml = new LaptopXml();
+            laptopXml.setId(laptop.getIndex());
+            laptopXml.setRam(laptop.getRAM());
+            laptopXml.setOperatingSystem(laptop.getOperatingSystem());
+            laptopXml.setDiscReader(laptop.getPhysicalDriveType());
+            laptopXml.setManufacturer(laptop.getProducerName());
 
+            laptopXml.setDisc(getDiscFromLaptop(laptop));
+            laptopXml.setProcessor(getProcessorFromLaptop(laptop));
+            laptopXml.setGraphicCard(getGraphicCardFromLaptop(laptop));
+            laptopXml.setScreen(getScreenFromLaptop(laptop));
 
+            list.add(laptopXml);
 
+        }
+        laptops.setLaptopList(list);
 
+        return laptops;
+    }
+
+    private static Screen getScreenFromLaptop(Laptop laptop) {
+        Screen screen = new Screen();
+        screen.setResolution(laptop.getScreenSize());
+        screen.setSize(laptop.getScreenDiagonal());
+        screen.setTouch(laptop.getIsScreenTouch());
+        screen.setType(laptop.getScreenSurfaceType());
+        return screen;
+    }
+
+    private static GraphicCard getGraphicCardFromLaptop(Laptop laptop) {
+        GraphicCard graphicCard = new GraphicCard();
+        graphicCard.setMemory(laptop.getMemoryGPU());
+        graphicCard.setName(laptop.getGraphics());
+        return graphicCard;
+    }
+
+    private static Processor getProcessorFromLaptop(Laptop laptop) {
+        Processor processor = new Processor();
+        processor.setName(laptop.getProcessorName());
+        processor.setClockSpeed(laptop.getClockSpeed());
+        processor.setPhysicalCores(laptop.getPhysicalCoresNumber());
+        return processor;
+    }
+
+    private static Disc getDiscFromLaptop(Laptop laptop) {
+            Disc disc = new Disc();
+            disc.setStorage(laptop.getDiskCapacity());
+            disc.setType(laptop.getDiskType());
+            return disc;
+
+    }
 }

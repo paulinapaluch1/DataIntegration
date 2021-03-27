@@ -48,7 +48,7 @@ public class LaptopController {
 
     @GetMapping("/laptops/saveXml")
     public String saveAllToXml() {
-        laptopService.saveLaptops(laptopList);
+        laptopService.saveLaptopsToXml(laptopList);
         return "index";
     }
 
