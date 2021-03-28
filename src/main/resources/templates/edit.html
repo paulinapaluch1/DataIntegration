@@ -9,14 +9,7 @@
 <body>
 <div class="container">
 <nav class="navbar navbar-light bg-light">
-    <form class="container-fluid justify-content-start">
-        <a th:href="@{/api/laptops}">
-            <button class="btn btn-outline-success me-2" type="button">Wczytaj dane z pliku TXT</button>
-        </a>
-        <a th:href="@{/api/laptops/save}">
-        <button class="btn btn-outline-secondary" type="button">Zapisz dane do pliku TXT</button>
-        </a>
-    </form>
+    <h2>EDYCJA POZYCJI</h2>
 </nav>
 
     <form action="#" th:action="@{/api/laptops/saveEdited}"

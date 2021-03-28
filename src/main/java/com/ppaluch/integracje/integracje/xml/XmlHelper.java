@@ -2,7 +2,6 @@ package com.ppaluch.integracje.integracje.xml;
 
 import com.ppaluch.integracje.integracje.converter.LaptopListMapper;
 import com.ppaluch.integracje.integracje.dto.Laptop;
-import com.ppaluch.integracje.integracje.dto.LaptopXml;
 import com.ppaluch.integracje.integracje.dto.Laptops;
 
 import javax.xml.bind.JAXBContext;
@@ -14,11 +13,11 @@ import java.util.List;
 
 public class XmlHelper {
 
-    public List<Laptop> readLaptops()  {
+    public List<Laptop> readLaptops(String path)  {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Laptops.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
-            Laptops laptops = (Laptops) jaxbUnmarshaller.unmarshal(new File("katalog.xml"));
+            Laptops laptops = (Laptops) jaxbUnmarshaller.unmarshal(new File(path));
             return LaptopListMapper.from(laptops);
 
         }catch(JAXBException e){
@@ -28,14 +27,14 @@ public class XmlHelper {
     }
 
 
-    public void saveLaptops(List<Laptop> laptopList) {
+    public void saveLaptops(List<Laptop> laptopList, String filepath) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Laptops.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();
 
             jaxbMarshaller.setProperty(Marshaller.JAXB_FORMATTED_OUTPUT, Boolean.TRUE);
 
-            File XMLfile = new File("katalog.xml");
+            File XMLfile = new File(filepath);
 
             jaxbMarshaller.marshal(LaptopListMapper.from(laptopList), XMLfile);
 

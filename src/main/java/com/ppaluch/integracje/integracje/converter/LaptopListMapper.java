@@ -8,30 +8,34 @@ import java.util.List;
 
 public class LaptopListMapper {
 
-
     public static List<Laptop> from(Laptops laptops){
         List<Laptop> list = new ArrayList<>();
         for(LaptopXml laptopXml : laptops.getLaptopList()){
-            Laptop laptop = new Laptop();
-            laptop.setIndex(laptopXml.getId());
-            laptop.setProducerName(laptopXml.getManufacturer());
-            laptop.setScreenDiagonal(laptopXml.getScreen().getSize());
-            laptop.setScreenSize(laptopXml.getScreen().getResolution());
-            laptop.setScreenSurfaceType(laptopXml.getScreen().getType());
-            laptop.setIsScreenTouch(laptopXml.getScreen().getTouch());
-            laptop.setProcessorName(laptopXml.getProcessor().getName());
-            laptop.setPhysicalCoresNumber(laptopXml.getProcessor().getPhysicalCores());
-            laptop.setClockSpeed(laptopXml.getProcessor().getClockSpeed());
-            laptop.setRAM(laptopXml.getRam());
-            laptop.setDiskCapacity(laptopXml.getDisc().getStorage());
-            laptop.setDiskType(laptopXml.getDisc().getType());
-            laptop.setGraphics(laptopXml.getGraphicCard().getName());
-            laptop.setMemoryGPU(laptopXml.getGraphicCard().getMemory());
-            laptop.setOperatingSystem(laptopXml.getOperatingSystem());
-            laptop.setPhysicalDriveType(laptopXml.getDiscReader());
+            Laptop laptop = getLaptopFromLaptopXml(laptopXml);
             list.add(laptop);
         }
             return list;
+    }
+
+    private static Laptop getLaptopFromLaptopXml(LaptopXml laptopXml) {
+        Laptop laptop = new Laptop();
+        laptop.setIndex(laptopXml.getId());
+        laptop.setProducerName(laptopXml.getManufacturer());
+        laptop.setScreenDiagonal(laptopXml.getScreen().getSize());
+        laptop.setScreenSize(laptopXml.getScreen().getResolution());
+        laptop.setScreenSurfaceType(laptopXml.getScreen().getType());
+        laptop.setIsScreenTouch(laptopXml.getScreen().getTouch());
+        laptop.setProcessorName(laptopXml.getProcessor().getName());
+        laptop.setPhysicalCoresNumber(laptopXml.getProcessor().getPhysicalCores());
+        laptop.setClockSpeed(laptopXml.getProcessor().getClockSpeed());
+        laptop.setRAM(laptopXml.getRam());
+        laptop.setDiskCapacity(laptopXml.getDisc().getStorage());
+        laptop.setDiskType(laptopXml.getDisc().getType());
+        laptop.setGraphics(laptopXml.getGraphicCard().getName());
+        laptop.setMemoryGPU(laptopXml.getGraphicCard().getMemory());
+        laptop.setOperatingSystem(laptopXml.getOperatingSystem());
+        laptop.setPhysicalDriveType(laptopXml.getDiscReader());
+        return laptop;
     }
 
 

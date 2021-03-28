@@ -14,6 +14,8 @@ import java.util.List;
 @Controller
 @RequestMapping("/api")
 public class LaptopController {
+
+    public static String XML_PATH = "katalog.xml";
     @Autowired
     private LaptopService laptopService;
 
@@ -40,7 +42,7 @@ public class LaptopController {
 
     @GetMapping("/laptops/xml")
     public String getLaptopsFromXml(Model theModel) {
-        List<Laptop> list =  laptopService.getAllLaptopsFromXml();
+        List<Laptop> list =  laptopService.getAllLaptopsFromXml(XML_PATH);
         laptopList = list;
         theModel.addAttribute("laptops", list);
         return "laptops";
@@ -48,7 +50,7 @@ public class LaptopController {
 
     @GetMapping("/laptops/saveXml")
     public String saveAllToXml() {
-        laptopService.saveLaptopsToXml(laptopList);
+        laptopService.saveLaptopsToXml(laptopList, XML_PATH);
         return "index";
     }
 

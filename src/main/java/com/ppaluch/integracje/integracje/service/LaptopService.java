@@ -23,11 +23,11 @@ public class LaptopService {
         csvReader.saveLaptops(laptops);
     }
 
-    public List<Laptop> getAllLaptopsFromXml() {
-        return xmlHelper.readLaptops();
+    public List<Laptop> getAllLaptopsFromXml(String path) {
+        return xmlHelper.readLaptops(path);
     }
 
-    public void saveLaptopsToXml(List<Laptop> laptopList) {
-       xmlHelper.saveLaptops(laptopList);
+    public void saveLaptopsToXml(List<Laptop> laptopList, String filepath) {
+       xmlHelper.saveLaptops(laptopList,filepath);
     }
 }
