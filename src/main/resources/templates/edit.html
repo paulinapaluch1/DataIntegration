@@ -15,8 +15,9 @@
     <form action="#" th:action="@{/api/laptops/saveEdited}"
           th:object="${laptop}" method="POST">
         <div class="row">
+            <input type="hidden" th:field="*{id}" />
 
-            <input type="hidden" th:field="*{index}" />
+            <input type="hidden" th:field="*{laptopIndex}" />
             <div class="mb-3 col">
                 Producer name: <input type="text" th:field="*{producerName}"
                                  class="form-control col-10">

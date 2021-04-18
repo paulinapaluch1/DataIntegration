@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.*;
 
 public class Screen {
 
-    @XmlAttribute( name = "touch", required = false )
+    @XmlAttribute( name = "touch")
     private String touch;
 
     @XmlElement( name = "size" )

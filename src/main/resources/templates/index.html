@@ -23,6 +23,14 @@
             <button class="btn btn-outline-secondary" type="button">Eksportuj dane do XML</button>
         </a>
     </form>
+    <form class="container-fluid justify-content-start">
+        <a th:href="@{/api/laptops/database}">
+            <button class="btn btn-outline-success me-2" type="button">Importuj dane z bazy danych</button>
+        </a>
+        <a th:href="@{/api/laptops/saveToDatabase}">
+            <button class="btn btn-outline-secondary" type="button">Eksportuj dane do bazy danych</button>
+        </a>
+    </form>
 </nav>
 
 

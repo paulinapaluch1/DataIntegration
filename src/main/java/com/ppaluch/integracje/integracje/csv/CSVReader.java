@@ -1,6 +1,6 @@
 package com.ppaluch.integracje.integracje.csv;
 
-import com.ppaluch.integracje.integracje.dto.Laptop;
+import com.ppaluch.integracje.integracje.dto.LaptopGuiDto;
 import org.apache.commons.csv.CSVFormat;
 import org.apache.commons.csv.CSVPrinter;
 
@@ -13,16 +13,16 @@ public class CSVReader {
     private static final String FILE_RELATIVE_PATH = "./katalog.txt";
     private static final String CSV_SEPARATOR = ";";
 
-   public List<Laptop> readLaptops() {
+   public List<LaptopGuiDto> readLaptops() {
        String line;
-       List<Laptop> laptops = new ArrayList<>();
+       List<LaptopGuiDto> laptops = new ArrayList<>();
        try {
            BufferedReader bufferedReader = new BufferedReader(new FileReader(FILE_RELATIVE_PATH));
            int i = 1;
            while ((line = bufferedReader.readLine()) != null) {
                String[] values = line.split(CSV_SEPARATOR);
-               Laptop laptop = new Laptop();
-               laptop.setIndex(i);
+               LaptopGuiDto laptop = new LaptopGuiDto();
+               laptop.setLaptopIndex(i);
                laptop.setProducerName(values[0]);
                laptop.setScreenDiagonal(values[1]);
                laptop.setScreenSize(values[2]);
@@ -53,11 +53,11 @@ public class CSVReader {
 
    }
 
-   public void saveLaptops(List<Laptop> laptops){
+   public void saveLaptops(List<LaptopGuiDto> laptops){
        try(Writer writer = new FileWriter(FILE_RELATIVE_PATH);
            CSVPrinter csvPrinter = new CSVPrinter(writer, CSVFormat.newFormat(';'))
        ) {
-           for(Laptop laptop : laptops){
+           for(LaptopGuiDto laptop : laptops){
                csvPrinter.printRecord(laptop.getProducerName(),
                        laptop.getScreenDiagonal(),
                        laptop.getScreenSize(),

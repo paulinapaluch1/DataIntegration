@@ -1,7 +1,7 @@
 package com.ppaluch.integracje.integracje.xml;
 
 import com.ppaluch.integracje.integracje.converter.LaptopListMapper;
-import com.ppaluch.integracje.integracje.dto.Laptop;
+import com.ppaluch.integracje.integracje.dto.LaptopGuiDto;
 import com.ppaluch.integracje.integracje.dto.Laptops;
 
 import javax.xml.bind.JAXBContext;
@@ -13,7 +13,7 @@ import java.util.List;
 
 public class XmlHelper {
 
-    public List<Laptop> readLaptops(String path)  {
+    public List<LaptopGuiDto> readLaptops(String path)  {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Laptops.class);
             Unmarshaller jaxbUnmarshaller = jaxbContext.createUnmarshaller();
@@ -27,7 +27,7 @@ public class XmlHelper {
     }
 
 
-    public void saveLaptops(List<Laptop> laptopList, String filepath) {
+    public void saveLaptops(List<LaptopGuiDto> laptopList, String filepath) {
         try {
             JAXBContext jaxbContext = JAXBContext.newInstance(Laptops.class);
             Marshaller jaxbMarshaller = jaxbContext.createMarshaller();

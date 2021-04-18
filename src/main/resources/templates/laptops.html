@@ -24,8 +24,24 @@
         <a th:href="@{/api/laptops/saveXml}">
             <button class="btn btn-outline-secondary" type="button">Eksportuj dane do XML</button>
         </a>
+
+    </form>
+    <form class="container-fluid justify-content-start">
+        <a th:href="@{/api/laptops/database}">
+            <button class="btn btn-outline-success me-2" type="button">Importuj dane z bazy danych</button>
+        </a>
+        <a th:href="@{/api/laptops/saveToDatabase}">
+            <button class="btn btn-outline-secondary" type="button">Eksportuj dane do bazy danych</button>
+        </a>
     </form>
 </nav>
+    <div th:if="${readRecords !=null}">Wczytano <span th:text="${readRecords}"/> rekordów. Nowe rekordy: <span th:text="${newRecords}"/>. Duplikaty: <span th:text="${duplicateRecords}"/>
+
+
+
+    </div>
+
+
 
 <table class="table table-sm table-bordered border-primary">
     <tr>
@@ -47,8 +63,8 @@
         <th>Physical Drive Type</th>
         <th></th>
     </tr>
-    <tr th:each="laptop : ${laptops}">
-        <td th:text="${laptop.index}"></td>
+    <tr th:style="${laptop.getStatus()} =='duplicated' ? 'background: red' : (${laptop.getStatus()} =='edited' ?'background: white' : 'background: grey')" th:each="laptop : ${laptops}">
+        <td th:text="${laptop.laptopIndex}"></td>
         <td th:text="${laptop.producerName}"></td>
         <td th:text="${laptop.screenDiagonal}"></td>
         <td th:text="${laptop.screenSize}"></td>
@@ -65,12 +81,12 @@
         <td th:text="${laptop.operatingSystem}"></td>
         <td th:text="${laptop.physicalDriveType}"></td>
         <th>
-            <a th:href="@{/api/laptops/edit(index=${laptop.index})}"
+            <a th:href="@{/api/laptops/edit(index=${laptop.laptopIndex})}"
                     class="btn btn-link">Edit</a>
         </th>
     </tr>
-    <div>
-    </div>
+</table>
+</div>
 </body>
 
 </html>

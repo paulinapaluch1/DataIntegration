@@ -14,7 +14,7 @@ public class Laptops {
     @XmlElement( name = "laptop" )
     private List<LaptopXml> laptopList;
 
-    @XmlAttribute(name = "moddate", required = false)
+    @XmlAttribute(name = "moddate")
     private String modDate;
 
 

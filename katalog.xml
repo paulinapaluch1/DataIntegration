@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="UTF-8" standalone="yes"?>
-<laptops moddate="Sun Mar 28 15:29:21 CEST 2021">
+<laptops moddate="Sat Apr 17 20:01:12 CEST 2021">
     <laptop id="1">
         <ram>8GB</ram>
         <os>Windows 7 Home</os>
@@ -526,6 +526,49 @@
         <screen touch="nie">
             <size>15"</size>
             <resolution>1920x1080</resolution>
+            <type>matowa</type>
+        </screen>
+        <graphic_card>
+            <name>intel HD Graphics 4000</name>
+            <memory>2GB</memory>
+        </graphic_card>
+        <disc type="SSD">
+            <storage></storage>
+        </disc>
+        <processor>
+            <name>intel i9</name>
+        </processor>
+        <manufacturer>Samsung</manufacturer>
+    </laptop>
+    <laptop id="25">
+        <ram></ram>
+        <os></os>
+        <disc_reader>DVD</disc_reader>
+        <screen touch="nie">
+            <size>17"</size>
+            <resolution>1366x7680</resolution>
+            <type></type>
+        </screen>
+        <graphic_card>
+            <name>intel HD Graphics 4000</name>
+            <memory>8GB</memory>
+        </graphic_card>
+        <disc type="">
+            <storage></storage>
+        </disc>
+        <processor>
+            <name>intel i5</name>
+            <clock_speed>2120</clock_speed>
+        </processor>
+        <manufacturer>Samsung</manufacturer>
+    </laptop>
+    <laptop id="26">
+        <ram></ram>
+        <os>Windows 10 Profesional</os>
+        <disc_reader>Blu-Ray</disc_reader>
+        <screen touch="tak">
+            <size>19"</size>
+            <resolution>1920x1000</resolution>
             <type>matowa</type>
         </screen>
         <graphic_card>

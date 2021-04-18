@@ -1,6 +1,6 @@
 package com.ppaluch.integracje.integracje.controller;
 
-import com.ppaluch.integracje.integracje.dto.Laptop;
+import com.ppaluch.integracje.integracje.dto.LaptopGuiDto;
 import com.ppaluch.integracje.integracje.service.LaptopService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -11,15 +11,17 @@ import org.springframework.web.bind.annotation.*;
 import javax.validation.Valid;
 import java.util.List;
 
+import static com.ppaluch.integracje.integracje.service.LaptopService.STATUS_EDITED;
+
 @Controller
 @RequestMapping("/api")
 public class LaptopController {
 
-    public static String XML_PATH = "katalog.xml";
+    public static final String  XML_PATH = "katalog.xml";
     @Autowired
     private LaptopService laptopService;
 
-    public static List<Laptop> laptopList;
+    public static List<LaptopGuiDto> laptopList;
 
     @GetMapping("/start")
     public String getStartPage(Model theModel) {
@@ -28,9 +30,12 @@ public class LaptopController {
 
     @GetMapping("/laptops")
     public String getLaptops(Model theModel) {
-        List<Laptop> list =  laptopService.getAllLaptops();
+        List<LaptopGuiDto> list =  laptopService.getAllLaptops();
         laptopList = list;
         theModel.addAttribute("laptops", list);
+        theModel.addAttribute("readRecords", laptopList.size());
+        theModel.addAttribute("newRecords", laptopService.countNewLaptops(list));
+        theModel.addAttribute("duplicateRecords",laptopService.countDuplicateLaptops(list));
         return "laptops";
     }
 
@@ -42,15 +47,35 @@ public class LaptopController {
 
     @GetMapping("/laptops/xml")
     public String getLaptopsFromXml(Model theModel) {
-        List<Laptop> list =  laptopService.getAllLaptopsFromXml(XML_PATH);
+        List<LaptopGuiDto> list =  laptopService.getAllLaptopsFromXml(XML_PATH);
         laptopList = list;
         theModel.addAttribute("laptops", list);
+        theModel.addAttribute("readRecords", laptopList.size());
+        theModel.addAttribute("newRecords", laptopService.countNewLaptops(list));
+        theModel.addAttribute("duplicateRecords",laptopService.countDuplicateLaptops(list));
         return "laptops";
     }
 
     @GetMapping("/laptops/saveXml")
     public String saveAllToXml() {
         laptopService.saveLaptopsToXml(laptopList, XML_PATH);
+        return "index";
+    }
+
+    @GetMapping("/laptops/database")
+    public String getLaptopsFromDatabase(Model theModel) {
+        List<LaptopGuiDto> list =  laptopService.getAllLaptopsFromDatabase();
+        laptopList = list;
+        theModel.addAttribute("laptops", list);
+        theModel.addAttribute("readRecords", laptopList.size());
+        theModel.addAttribute("newRecords", laptopService.countNewLaptops(list));
+        theModel.addAttribute("duplicateRecords",laptopService.countDuplicateLaptops(list));
+        return "laptops";
+    }
+
+    @GetMapping("/laptops/saveToDatabase")
+    public String saveAllToDatabase() {
+        laptopService.updateLaptopsInDatabase(laptopList);
         return "index";
     }
 
@@ -63,12 +88,13 @@ public class LaptopController {
 
 
     @RequestMapping(value = "/laptops/saveEdited", method = RequestMethod.POST)
-    public String saveEditedLaptop(@ModelAttribute("laptop") @Valid Laptop laptop, BindingResult bindingResult, Model model) throws Exception {
+    public String saveEditedLaptop(@ModelAttribute("laptop") @Valid LaptopGuiDto laptop, BindingResult bindingResult, Model theModel){
         if (bindingResult.hasErrors()) {
             return "edit";
         } else {
-            laptopList.set(laptop.getIndex() - 1, laptop);
-            model.addAttribute("laptops", laptopList);
+            laptop.setStatus(STATUS_EDITED);
+            laptopList.set(laptop.getLaptopIndex() - 1, laptop);
+            theModel.addAttribute("laptops", laptopList);
             return "laptops";
         }
     }

@@ -6,8 +6,12 @@ import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Pattern;
 
 @Data
-public class Laptop {
-    private int index;
+
+public class LaptopGuiDto {
+
+    private int id;
+
+    private int laptopIndex;
     @NotNull
     @Pattern(regexp = "^[A-ZŁŚ]{1}+[a-ząęółśżźćń]+$", message="Wprowadz poprawną nazwe producenta")
     private String producerName;
@@ -49,9 +53,8 @@ public class Laptop {
     private String operatingSystem;
     @NotNull
     @Pattern(regexp = "^[A-z0-9À-ž\\s]+$", message= "Wprowadź poprawny rodzaj napedu fizycznego")
-
     private String physicalDriveType;
-
+    private String status;
 
 
 }

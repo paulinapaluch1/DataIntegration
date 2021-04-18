@@ -2,6 +2,7 @@ package com.ppaluch.integracje.integracje.converter;
 
 
 import com.ppaluch.integracje.integracje.dto.*;
+import com.ppaluch.integracje.integracje.dto.LaptopGuiDto;
 import org.junit.jupiter.api.Test;
 
 import java.util.ArrayList;
@@ -15,11 +16,11 @@ class LaptopListMapperTest {
     @Test
     public void shouldRepackLaptopListFromLaptops(){
         Laptops laptops = prepareLaptopsForTests();
-        List<Laptop> laptopList = LaptopListMapper.from(laptops);
+        List<LaptopGuiDto> laptopList = LaptopListMapper.from(laptops);
 
         assertFalse(laptopList.isEmpty());
         assertEquals(laptopList.size(), 1);
-        assertEquals(laptopList.get(0).getIndex(),1);
+        assertEquals(laptopList.get(0).getLaptopIndex(),1);
         assertEquals(laptopList.get(0).getRAM(),"8GB");
         assertEquals(laptopList.get(0).getDiskCapacity(),"500GB");
         assertEquals(laptopList.get(0).getProcessorName(),"intel core i7");

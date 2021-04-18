@@ -11,7 +11,7 @@ import javax.xml.bind.annotation.*;
 
 public class Disc {
 
-    @XmlAttribute( name = "type", required = false )
+    @XmlAttribute( name = "type")
     private String type;
 
     @XmlElement( name = "storage" )
